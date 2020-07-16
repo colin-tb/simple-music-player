@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Music from './Music';
+import MusicWithHooks from './MusicWithHooks';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Music />
+        <MusicWithHooks />
       </header>
     </div>
   );

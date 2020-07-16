@@ -27,8 +27,6 @@ class Music extends React.Component {
       });
       
       if (e.target.currentTime === e.target.duration && e.target.duration !== 0) {
-        console.log('ended')
-
         this.setState({ player: 'stopped' });
       }
     });
@@ -46,8 +44,6 @@ class Music extends React.Component {
 
   handlePlayOnClick = () => {
     this.player.play();
-
-    console.log('currentTime:', this.state.currentTime)
     this.setState({ player: 'playing' }, () => console.log('after play currentTime:', this.state.currentTime))
   }
 
