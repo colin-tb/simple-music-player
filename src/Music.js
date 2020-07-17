@@ -112,8 +112,7 @@ class Music extends React.Component {
 
         <audio
           ref={ref => this.backgroundPlayer = ref}
-          src="https://cdn.noises.online/NoisesOnline/Audio/ab.ogg"
-          autoPlay="autoplay"
+          src="https://music-cdn.icons8.com/preview_low/617/01e4d471-2cb0-47ab-9bf8-c0b22fbde8e6.mp3"
           id="audio2"
         >
           <p>no support for IE 10 sorry :(</p>
