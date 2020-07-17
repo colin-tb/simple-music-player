@@ -33,11 +33,10 @@ class Music extends React.Component {
     });
 
     this.player.addEventListener('canplaythrough', (e) => {
-      console.log('checking')
       this.setState({ showSlider: true, duration: e.target.duration });
     }, false);
 
-    this.backgroundPlayer.volume = 0.1;
+    this.backgroundPlayer.volume = this.state.backgroundMusicVolume;
   }
 
   componentWillUnmount() {
@@ -48,7 +47,7 @@ class Music extends React.Component {
   handlePlayOnClick = () => {
     this.player.play();
     this.backgroundPlayer.play();
-    this.setState({ player: 'playing' }, () => console.log('after play currentTime:', this.state.currentTime))
+    this.setState({ player: 'playing' })
   }
 
   handlePauseOnClick = () => {
@@ -74,8 +73,6 @@ class Music extends React.Component {
       () => {
         this.player.currentTime = newCurrentTime;
         this.backgroundPlayer.currentTime = newCurrentTime;
-
-        console.log('times: ', this.player.currentTime, this.backgroundPlayer.currentTime)
       }
     );
   }
