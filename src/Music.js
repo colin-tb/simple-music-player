@@ -106,14 +106,17 @@ class Music extends React.Component {
     return (
       <>
         <h1>My Player</h1>
-        <audio ref={ref => this.player = ref} src={src}>
+        <audio ref={ref => this.player = ref} src={src} id="audio1">
         </audio>
         
 
         <audio
           ref={ref => this.backgroundPlayer = ref}
           src="https://cdn.noises.online/NoisesOnline/Audio/ab.ogg"
+          autoPlay="autoplay"
+          id="audio2"
         >
+          <p>no support for IE 10 sorry :(</p>
         </audio>
         
         {
