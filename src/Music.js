@@ -36,7 +36,9 @@ class Music extends React.Component {
       this.setState({ showSlider: true, duration: e.target.duration });
     }, false);
 
-    this.backgroundPlayer.volume = this.state.backgroundMusicVolume;
+    if (this.backgroundPlayer.volume) {
+      this.backgroundPlayer.volume = this.state.backgroundMusicVolume;
+    }
   }
 
   componentWillUnmount() {
@@ -66,7 +68,7 @@ class Music extends React.Component {
 
   handleUpdateCurrentTime = (e) => {
     const { duration } = this.state;
-    const percentage = Number.parseInt(e.target.value)/100;
+    const percentage = parseInt(e.target.value)/100;
     const newCurrentTime = percentage * duration;
 
     this.setState({ currentTime: percentage * duration },
@@ -77,8 +79,8 @@ class Music extends React.Component {
     );
   }
 
-  handleVolumneOnChange = (e) => {
-    const newVolume = Number.parseInt(e.target.value)/100;
+  handleVolumeOnChange = (e) => {
+    const newVolume = parseInt(e.target.value)/100;
     this.backgroundPlayer.volume = newVolume;
     this.setState({ backgroundMusicVolume: newVolume })
   }
@@ -141,7 +143,7 @@ class Music extends React.Component {
           <Fragment>
             <p>Background Sounds</p>
             <Slider
-              onChange={this.handleVolumneOnChange}
+              onChange={this.handleVolumeOnChange}
               value={backgroundMusicVolume * 100}
             />
           </Fragment>
