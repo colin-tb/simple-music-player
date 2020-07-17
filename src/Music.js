@@ -35,6 +35,8 @@ class Music extends React.Component {
       console.log('checking')
       this.setState({ showSlider: true, duration: e.target.duration });
     }, false);
+
+    this.backgroundPlayer.volume = 0.1;
   }
 
   componentWillUnmount() {
@@ -44,17 +46,21 @@ class Music extends React.Component {
 
   handlePlayOnClick = () => {
     this.player.play();
+    this.backgroundPlayer.play();
     this.setState({ player: 'playing' }, () => console.log('after play currentTime:', this.state.currentTime))
   }
 
   handlePauseOnClick = () => {
     this.player.pause();
+    this.backgroundPlayer.pause();
     this.setState({ player: 'paused' })
   }
 
   handleStopOnClick = () => {
     this.player.pause();
     this.player.currentTime = 0;
+    this.backgroundPlayer.pause();
+    this.backgroundPlayer.currentTime = 0;
     this.setState({ player: 'stopped' })
   }
 
@@ -64,7 +70,12 @@ class Music extends React.Component {
     const newCurrentTime = percentage * duration;
 
     this.setState({ currentTime: percentage * duration },
-      () => this.player.currentTime = newCurrentTime
+      () => {
+        this.player.currentTime = newCurrentTime;
+        this.backgroundPlayer.currentTime = newCurrentTime;
+
+        console.log('times: ', this.player.currentTime, this.backgroundPlayer.currentTime)
+      }
     );
   }
 
@@ -76,6 +87,10 @@ class Music extends React.Component {
       showSlider
     } = this.state;
 
+    const {
+      src = 'https://content.totalbrain.com/media/97accd/play/mp3/128k/default/v.mp3'
+    } = this.props;
+
     const currentTime = getTime(stateCurrentTime);
     const duration = getTime(stateDuration);
 
@@ -86,7 +101,12 @@ class Music extends React.Component {
         <h1>My Player</h1>
         <audio
           ref={ref => this.player = ref}
-          src="https://content.totalbrain.com/media/97accd/play/mp3/128k/default/v.mp3"
+          src={src}
+        />
+
+        <audio
+          ref={ref => this.backgroundPlayer = ref}
+          src="https://cdn.noises.online/NoisesOnline/Audio/ab.ogg"
         />
         
         {
