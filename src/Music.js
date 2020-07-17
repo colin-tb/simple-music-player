@@ -106,7 +106,7 @@ class Music extends React.Component {
     return (
       <>
         <h1>My Player</h1>
-        <audio ef={ref => this.player = ref} src={src}>
+        <audio ref={ref => this.player = ref} src={src}>
         </audio>
         
 
