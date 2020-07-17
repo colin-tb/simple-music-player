@@ -6,15 +6,20 @@ class Slider extends React.Component {
   }
 
   render() {
-    const { handlePause, handlePlay, updateCurrentTime, value } = this.props;
+    const {
+      onMouseDown = () => null,
+      onMouseUp = () => null,
+      onChange,
+      value
+    } = this.props;
 
     return (
       <div className="slidecontainer">
         <input
           type="range" min="1" max="100" value={value} className="slider" id="myRange"
-          onChange={updateCurrentTime}
-          onMouseDown={handlePause}
-          onMouseUp={handlePlay}
+          onChange={onChange}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
         />
       </div>
     );

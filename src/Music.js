@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Slider from './Slider';
 
 function getTime(time) {
@@ -15,7 +15,8 @@ class Music extends React.Component {
       player: 'paused',
       currentTime: 0,
       duration: 0,
-      showSlider: false
+      showSlider: false,
+      backgroundMusicVolume: 0.5
     }
   }
 
@@ -79,9 +80,16 @@ class Music extends React.Component {
     );
   }
 
+  handleVolumneOnChange = (e) => {
+    const newVolume = Number.parseInt(e.target.value)/100;
+    this.backgroundPlayer.volume = newVolume;
+    this.setState({ backgroundMusicVolume: newVolume })
+  }
+
   render() {
     const {
       player,
+      backgroundMusicVolume,
       currentTime: stateCurrentTime,
       duration: stateDuration,
       showSlider
@@ -125,11 +133,21 @@ class Music extends React.Component {
         
         {showSlider && (
           <Slider
-            handlePause={this.handlePauseOnClick}
-            handlePlay={this.handlePlayOnClick}
-            updateCurrentTime={this.handleUpdateCurrentTime}
+            onMouseDown={this.handlePauseOnClick}
+            onMouseUp={this.handlePlayOnClick}
+            onChange={this.handleUpdateCurrentTime}
             value={percentage}
           />
+        )}
+
+        {showSlider && (
+          <Fragment>
+            <p>Background Sounds</p>
+            <Slider
+              onChange={this.handleVolumneOnChange}
+              value={backgroundMusicVolume * 100}
+            />
+          </Fragment>
         )}
       </>
     )
