@@ -36,6 +36,8 @@ class Music extends React.Component {
       this.setState({ showSlider: true, duration: e.target.duration });
     }, false);
 
+    this.player.volume = 0.2;
+
     if (this.backgroundPlayer.volume) {
       this.backgroundPlayer.volume = this.state.backgroundMusicVolume;
     }
@@ -94,9 +96,8 @@ class Music extends React.Component {
       showSlider
     } = this.state;
 
-    const {
-      src = 'https://content.totalbrain.com/media/97accd/play/mp3/128k/default/v.mp3'
-    } = this.props;
+    const src = `https://content.totalbrain.com/media/mu3/play/mp3/128k/default/v.mp3`;
+    const backgroundMusicSrc = 'https://content.totalbrain.com/media/en1/play/mp3/128k/default/v.mp3';
 
     const currentTime = getTime(stateCurrentTime);
     const duration = getTime(stateDuration);
@@ -112,7 +113,7 @@ class Music extends React.Component {
 
         <audio
           ref={ref => this.backgroundPlayer = ref}
-          src="https://music-cdn.icons8.com/preview_low/617/01e4d471-2cb0-47ab-9bf8-c0b22fbde8e6.mp3"
+          src={backgroundMusicSrc}
           id="audio2"
         >
           <p>no support for IE 10 sorry :(</p>
