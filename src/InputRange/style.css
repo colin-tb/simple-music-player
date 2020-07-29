@@ -1,0 +1,50 @@
+
+
+/*Relative position for rangewrapper is important to provide a positioning context 
+for the thumb and value text. It also provides a background color for the slider track.*/
+.rangewrapper {
+  line-height: 1.3;
+  border-radius: 6px;
+  margin: 20px 0 40px 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 4px;
+  overflow: visible;
+  background-color: white;
+}
+/*The border-radius for the inner fill of the slider track is just a bit smaller 
+than the border-radius for the enclosing rangewrapper div.*/
+.sliderfill {
+  border: 0 none;
+  border-radius: 6px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+/*The sliderthumb uses an image and it is absolutely position using a calculation. 
+Pointer-events are set to none so it won't block dragging the range input thumb. 
+We will use javascript to be sure the sliderthumb always appears at the same location 
+as the real range input thumb.*/
+.sliderthumb {
+  width: 16px;
+  height: 16px;
+  background-color: lightblue;
+  border-radius: 50px;
+  position: absolute;
+  left: 0;
+  top: -6px;
+  border: 0 none;
+  padding: 0;
+  pointer-events: none;
+}
+
+/*The customrange class sets each range input to a low opacity.*/
+.customrange {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  opacity: 0.05;
+  position: absolute;
+  left: 0;
+}

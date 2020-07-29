@@ -21,26 +21,26 @@ class Music extends React.Component {
   }
 
   componentDidMount() {
-    this.player.addEventListener("timeupdate", e => {
-      this.setState({
-        currentTime: e.target.currentTime,
-        duration: e.target.duration
-      });
+    // this.player.addEventListener("timeupdate", e => {
+    //   this.setState({
+    //     currentTime: e.target.currentTime,
+    //     duration: e.target.duration
+    //   });
       
-      if (e.target.currentTime === e.target.duration && e.target.duration !== 0) {
-        this.setState({ player: 'stopped' });
-      }
-    });
+    //   if (e.target.currentTime === e.target.duration && e.target.duration !== 0) {
+    //     this.setState({ player: 'stopped' });
+    //   }
+    // });
 
-    this.player.addEventListener('canplaythrough', (e) => {
-      this.setState({ showSlider: true, duration: e.target.duration });
-    }, false);
+    // this.player.addEventListener('canplaythrough', (e) => {
+    //   this.setState({ showSlider: true, duration: e.target.duration });
+    // }, false);
 
-    this.player.volume = 0.2;
+    // this.player.volume = 0.2;
 
-    if (this.backgroundPlayer.volume) {
-      this.backgroundPlayer.volume = this.state.backgroundMusicVolume;
-    }
+    // if (this.backgroundPlayer.volume) {
+    //   this.backgroundPlayer.volume = this.state.backgroundMusicVolume;
+    // }
   }
 
   componentWillUnmount() {
@@ -96,8 +96,8 @@ class Music extends React.Component {
       showSlider
     } = this.state;
 
-    const src = `https://content.totalbrain.com/media/mu3/play/mp3/128k/default/v.mp3`;
-    const backgroundMusicSrc = 'https://content.totalbrain.com/media/en1/play/mp3/128k/default/v.mp3';
+    // const src = `https://content.totalbrain.com/media/en1/play/mp3/128k/default/v.mp3`;
+    // const backgroundMusicSrc = 'https://content.totalbrain.com/media/en1/play/mp3/128k/default/v.mp3';
 
     const currentTime = getTime(stateCurrentTime);
     const duration = getTime(stateDuration);
@@ -107,7 +107,7 @@ class Music extends React.Component {
     return (
       <>
         <h1>My Player</h1>
-        <audio ref={ref => this.player = ref} src={src} id="audio1">
+        {/* <audio ref={ref => this.player = ref} src={src} id="audio1" type="application/x-mpegURL">
         </audio>
         
 
@@ -118,7 +118,7 @@ class Music extends React.Component {
         >
           <p>no support for IE 10 sorry :(</p>
         </audio>
-        
+         */}
         {
           player === 'playing'
           ? <button onClick={this.handlePauseOnClick}>Pause</button>
@@ -142,7 +142,7 @@ class Music extends React.Component {
           />
         )}
 
-        {showSlider && (
+        {(
           <Fragment>
             <p>Background Sounds</p>
             <Slider
@@ -151,6 +151,8 @@ class Music extends React.Component {
             />
           </Fragment>
         )}
+      
+     
       </>
     )
   }

@@ -2,6 +2,13 @@
   width: 100%; /* Width of the outside container */
 }
 
+.slidecontainer--bar {
+  height: 2px;
+  width: 0px;
+
+  background-color: white;
+}
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
