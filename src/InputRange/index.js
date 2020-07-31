@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './style.css';
 
 const InputRange = ({initialValue = 50}) => {
@@ -6,27 +6,21 @@ const InputRange = ({initialValue = 50}) => {
   const sliderThumbRef = useRef(null);
   const sliderFillRef = useRef(null);
 
-  
-
-  useEffect(() => {
-    const setThumb = () => {
-      let size = getComputedStyle(sliderThumbRef.current).getPropertyValue("width");
-      let newx = `calc(${inputValue}% - ${parseInt(size)/2}px)`;
-      sliderThumbRef.current.style.left = newx;  
-    }
-    
-    const setSliderFill = () => {
-      // we create a linear gradient with a color stop based on the slider value
-      let gradient = `linear-gradient(to right, blue ${inputValue}%, rgba(255,255,255,0) ${inputValue}%)`;
-      sliderFillRef.current.style.background = gradient;
-    }
-
-    setThumb();
-    setSliderFill();
+  const setThumb = useCallback(() => {
+    const size = getComputedStyle(sliderThumbRef.current).getPropertyValue("width");
+    const newXPosition = `calc(${inputValue}% - ${parseInt(size)/2}px)`;
+    sliderThumbRef.current.style.left = newXPosition;  
   }, [inputValue])
   
-  
-  
+  const setSliderFill = useCallback(() => {
+    const gradient = `linear-gradient(to right, blue ${inputValue}%, rgba(255,255,255,0) ${inputValue}%)`;
+    sliderFillRef.current.style.background = gradient;
+  }, [inputValue]);
+
+  useEffect(() => {
+    setThumb();
+    setSliderFill();
+  }, [inputValue, setThumb, setSliderFill])
 
   return (
     <div className="rangewrapper horizontal">
