@@ -16,7 +16,7 @@ function App() {
           <InputRange initialValue={25} />
         </div> */}
 
-        <button
+        {/* <button
           onClick={() => {
             const video = document.getElementById('video');
             video.volume = 0.2;
@@ -24,7 +24,7 @@ function App() {
           }}
         >
           play
-        </button>
+        </button> */}
 
       </header>
     </div>
