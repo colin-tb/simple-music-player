@@ -66,14 +66,15 @@
       if (type === 'mp3') {
         const audio = document.getElementById('audio');
         audio.src = videoSrc;
-        audio.play();
+        audio.crossOrigin = 'anonymous';
+        // audio.play();
       } else if (Hls.isSupported()) {
         var hls = new Hls();
         hls.loadSource(videoSrc);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function() {
-          video.play();
-        });
+        // hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        //   video.play();
+        // });
       }
       // hls.js is not supported on platforms that do not have Media Source
       // Extensions (MSE) enabled.
@@ -91,10 +92,11 @@
       else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoSrc;
         video.addEventListener('loadedmetadata', function() {
-          video.play();
+          // video.play();
         });
       }
     </script> 
+    
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

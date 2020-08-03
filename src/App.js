@@ -16,15 +16,15 @@ function App() {
           <InputRange initialValue={25} />
         </div> */}
 
-        {/* <button
+        <button
           onClick={() => {
-            const video = document.getElementById('video');
+            const video = document.getElementById('audio');
             video.volume = 0.2;
             video.play();
           }}
         >
           play
-        </button> */}
+        </button>
 
       </header>
     </div>
