@@ -11,12 +11,16 @@ class Slider extends React.Component {
 
     return (
       <div className="slidecontainer">
-        <input
+        {/* <input
           type="range" min="1" max="100" value={value} className="slider" id="myRange"
           onChange={onChange}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}
-        />
+        /> */}
+
+        <div className='slidecontainer--bar'>
+          
+        </div>
       </div>
     );
   }

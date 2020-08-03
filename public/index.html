@@ -35,10 +35,39 @@
     <audio id='audio'></audio>
 
     <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id') || 'mu5';
+      const bitrate = urlParams.get('bitrate') || '64k';
+      const type = urlParams.get('type') || 'mp3';
+
+      let endingUrl = `mp3/${bitrate}/default/v.mp3`;
+
+      switch (type) {
+        case 'mp3':
+          endingUrl = `mp3/${bitrate}/default/v.mp3`;
+          break;
+
+        case 'm3u8':
+          endingUrl = `ts/${bitrate}/default/v.m3u8`;
+          break;
+
+        case 'playlist':
+          endingUrl = `ts/playlist.m3u8`;
+          break;
+      
+        default:
+          break;
+      }
+
       var video = document.getElementById('audio');
       // var videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
-      var videoSrc = 'https://brain-content.s3-us-west-2.amazonaws.com/media/mu5/play/ts/playlist.m3u8';
-      if (Hls.isSupported()) {
+      var videoSrc = `https://brain-content.s3-us-west-2.amazonaws.com/media/mu5/play/${endingUrl}`;
+
+      if (type === 'mp3') {
+        const audio = document.getElementById('audio');
+        audio.src = videoSrc;
+        audio.play();
+      } else if (Hls.isSupported()) {
         var hls = new Hls();
         hls.loadSource(videoSrc);
         hls.attachMedia(video);
