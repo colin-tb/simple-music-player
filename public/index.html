@@ -35,10 +35,16 @@
     <audio id='audio'></audio>
 
     <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get('id') || 'mu5';
-      const bitrate = urlParams.get('bitrate') || '64k';
-      const type = urlParams.get('type') || 'mp3';
+      let id = 'mu5';
+      let bitrate = '64k';
+      let type = 'mp3';
+
+      if (URLSearchParams) {
+        const urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.get('id') || 'mu5';
+        bitrate = urlParams.get('bitrate') || '64k';
+        type = urlParams.get('type') || 'mp3';
+      }
 
       let endingUrl = 'mp3/' + bitrate + '/default/v.mp3';
 
