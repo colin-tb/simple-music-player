@@ -40,19 +40,19 @@
       const bitrate = urlParams.get('bitrate') || '64k';
       const type = urlParams.get('type') || 'mp3';
 
-      let endingUrl = `mp3/${bitrate}/default/v.mp3`;
+      let endingUrl = 'mp3/' + bitrate + '/default/v.mp3';
 
       switch (type) {
         case 'mp3':
-          endingUrl = `mp3/${bitrate}/default/v.mp3`;
+          endingUrl = 'mp3/' + bitrate + '/default/v.mp3';
           break;
 
         case 'm3u8':
-          endingUrl = `ts/${bitrate}/default/v.m3u8`;
+          endingUrl = 'ts/' + bitrate + '/default/v.mp3';
           break;
 
         case 'playlist':
-          endingUrl = `ts/playlist.m3u8`;
+          endingUrl = 'ts/playlist.m3u8';
           break;
       
         default:
@@ -61,7 +61,7 @@
 
       var video = document.getElementById('audio');
       // var videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
-      var videoSrc = `https://brain-content.s3-us-west-2.amazonaws.com/media/${id}/play/${endingUrl}`;
+      var videoSrc = 'https://brain-content.s3-us-west-2.amazonaws.com/media/' + id + '/play/' + endingUrl;
 
       if (type === 'mp3') {
         const audio = document.getElementById('audio');
