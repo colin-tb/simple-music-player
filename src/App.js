@@ -8,11 +8,13 @@ import './App.css';
 class App extends React.Component {
   componentDidMount() {
     const video = document.getElementById('audio');
-  
+    console.log('before preload metadata')
     video.preload = 'metadata';
-
+    console.log('before onloadedmetadata')
     video.onloadedmetadata = function() {
+      console.log('before revokeObjectURL')
       window.URL.revokeObjectURL(video.src);
+      console.log('before duration var')
       var duration = video.duration;
 
       console.log('duration in on load metadata: ', duration)
